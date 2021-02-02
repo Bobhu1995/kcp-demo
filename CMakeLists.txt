@@ -4,6 +4,6 @@ project(main)
 
 
 
-set(SOURCE_FILES ikcp.cpp kcpsession.cpp kcpserver.cpp test.cpp)
+set(SOURCE_FILES ikcp.c kcpsession.cpp kcpserver.cpp test.cpp)
 
 add_executable(main test.cpp ${SOURCE_FILES})
