@@ -1,4 +1,4 @@
-#program once
+#pragma once
 #include <sys/time.h>
 #include <string>
 #include <map>
@@ -55,9 +55,9 @@ private:
     void OnKCPRecv(int conv, const char* data, int len);
     void DoErrorLog(const char* fmt, ...);
 
-    KCPOptions options_;
-    int fd_;
-    std::map<int, KCPSession*> sessions_;
-    IUINT64 current_clock_;
+    KCPOptions kcp_options;
+    int kcp_fd;
+    std::map<int, KCPSession*> kcp_sessions;
+    IUINT64 kcp_current_clock;
 };
 

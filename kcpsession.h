@@ -1,7 +1,6 @@
-#program once
+#pragma once
 #include <arpa/inet.h>
 #include "ikcp.h"
-#include "kcpserver.h"
 
 struct KCPAddr
 {
@@ -15,7 +14,7 @@ struct KCPAddr
 class KCPServer;
 class KCPSession;
 
-KCPSession* NewKCPSession(KCPServer* server, const KCPAddr& addr, int conv, IUINT16 current);
+KCPSession* NewKCPSession(KCPServer* server, const KCPAddr& addr, int conv, IUINT64 current);
 
 class KCPRingBuffer
 {
@@ -35,11 +34,11 @@ public:
     int GetBufferSize() const;
 
 private:
-    int read_pos_;
-    int write_pos_;
-    bool is_empty_;
-    bool is_full_;
-    char buffer_[BUFFER_SIZE];
+    int read_pos;
+    int write_pos;
+    bool is_empty;
+    bool is_full;
+    char ring_buffer[BUFFER_SIZE];
 };
 
 
@@ -61,9 +60,9 @@ public:
 private:
     void Clear();
 
-    ikcpcb* kcp_;
-    KCPServer* server_;
-    KCPAddr addr_;
-    IUINT64 last_active_time_;
-    KCPRingBuffer recv_buffer_;
+    ikcpcb* kcp_cb;
+    KCPServer* kcp_server;
+    KCPAddr kcp_addr;
+    IUINT64 last_active_time;
+    KCPRingBuffer recv_buffer;
 };
